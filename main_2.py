@@ -17,7 +17,7 @@ print num
 # To retrieve the file and unzip
 os.popen("wget http://static.imply.io/takehome/access.log.gz")
 os.popen("gunzip -k access.log.gz")
-os.open("mkdir out")
+os.popen("mkdir out")
 
 fin = open('access.log', 'r')
 fout = open('log.txt', 'w')
@@ -27,14 +27,13 @@ for line in fin:
     if active_user.has_key(l[1]):
         continue;
     if os.path.isfile("out/" + l[1] + '.txt'):
-        # print l[1], len(user_dict[l[1]])
         f = open("out/" + l[1] + '.txt', 'r+')
         f_list = f.readline().strip().split(",")
         if l[2] not in f_list:
             f.write("," + l[2])
             if len(f_list) == (num - 1):
                 active_user[l[1]] = 1
-                fout.write(l[1])
+		fout.write("UserID: " + l[1] + "\n")
         f.close()
     else:
         f = open("out/" +l[1] + ".txt", "w")
@@ -45,10 +44,4 @@ for line in fin:
 print len(active_user)
 fin.close()
 fout.close()
-# for key in user_dict:
-#	fout.write("UserID: " + key)
-#	fout.write("\n")
-#	#print key, len(user_dict[key])
-#	for line in user_dict[key]:
-#		fout.write("\t" + line)
 os.popen("rm access.log*")
