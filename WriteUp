@@ -1,6 +1,6 @@
 Coding challenge: analyzing user sessions
-Programming Language used : Python
-Environment: Linux/Ubuntu (to wget and gunzip log from server)
+Programming Language used: Python
+Environment: Linux/Ubuntu (to wget and gunzip log from server), If running in different environments then please comment os.popen() commands.
 
 Instruction to Build and Run:
 Python main.py Number(N)
