@@ -1,0 +1,30 @@
+Coding challenge: analyzing user sessions
+Programming Language used: Python
+Environment: Linux/Ubuntu (to wget and gunzip log from server), If running in different environments then please comment os.popen() commands.
+
+Instruction to Build and Run:
+Python main.py Number(N)
+Number is  a command line argument for getting number of distinct paths.
+
+Approach:
+I am submitting two versions of solution to the problem. The first one perform well with respect to time complexity utilizing main memory, while the second one considers memory constraints and uses disk space for storing and analyzing of intermediate data. 
+
+In the first solution, a hashmap of userID and its paths are stored in main memory. When the userID reaches the given number of distinct paths, it is removed from the hash and stored into file. This way for each user maximum paths stored are N-1.
+
+In the second solution, maintaining separate files for each userID for storing the distinct paths up to N. This way even if the log is larger than the main memory, the program handles the situation by utilizing the disk space for storing the data.
+
+Alternate Approach:
+Using the trie data structure for storing the distinct path for each user. Using trie we can store all the distinct paths by only writing to memory the difference between consecutive paths.
+Reason for not choosing: Implenating was complex and would take more time to design.
+
+Resources and Performance:
+In the first approach using hashmap of all users with the distinct path until N, 
+space complexity : number_of_user_not_active*(N-1) + number_of_active_user
+and time complexity : Number_of_enteries_in_log*N
+
+In the second approach using memory stored files for each user,
+space complexity : number_of_active_user
+and time complexity : Number_of_enteries_in_log*Number_of_distinct_paths
+
+Improvements:
+Could have implemented the above two approaches using multithreading with proper lock on resources.
